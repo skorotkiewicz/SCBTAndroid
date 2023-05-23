@@ -60,31 +60,46 @@ jobs:
         run: ./gradlew ${{ env.main_project_module }}:bundleRelease
 
       - name: Upload APK Debug
-        uses: xresloader/upload-to-github-release@v1
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "${{ env.main_project_module }}/build/outputs/apk/debug/*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          file: "${{ env.main_project_module }}/build/outputs/apk/debug/*"
-          tags: true
-          draft: false
 
       - name: Upload APK Release
-        uses: xresloader/upload-to-github-release@v1
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "${{ env.main_project_module }}/build/outputs/apk/release/*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          file: "${{ env.main_project_module }}/build/outputs/apk/release/*"
-          tags: true
-          draft: false
 
       - name: Upload AAB (App Bundle)
-        uses: xresloader/upload-to-github-release@v1
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "${{ env.main_project_module }}/build/outputs/bundle/release/*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          file: "${{ env.main_project_module }}/build/outputs/bundle/release/*"
-          tags: true
-          draft: false
+
+      # - name: Upload APK Debug
+      #   uses: svenstaro/upload-release-action@v2
+      #   with:
+      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     file: "${{ env.main_project_module }}/build/outputs/apk/debug/*"
+      #     tag: ${{ github.ref }}
+
+      # - name: Upload APK Release
+      #   uses: svenstaro/upload-release-action@v2
+      #   with:
+      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     file: "${{ env.main_project_module }}/build/outputs/apk/release/*"
+      #     tag: ${{ github.ref }}
+
+      # - name: Upload AAB (App Bundle)
+      #   uses: svenstaro/upload-release-action@v2
+      #   with:
+      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     file: "${{ env.main_project_module }}/build/outputs/bundle/release/*"
+      #     tag: ${{ github.ref }}
 
       # Upload Artifact Build
       # Noted For Output [main_project_module]/build/outputs/apk/debug/
