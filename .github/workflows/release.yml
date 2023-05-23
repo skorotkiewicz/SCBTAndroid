@@ -65,7 +65,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "${{ env.main_project_module }}/build/outputs/apk/debug/*"
-          tags: false
+          tags: true
           draft: false
 
       - name: Upload APK Release
@@ -74,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "${{ env.main_project_module }}/build/outputs/apk/release/*"
-          tags: false
+          tags: true
           draft: false
 
       - name: Upload AAB (App Bundle)
@@ -83,7 +83,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "${{ env.main_project_module }}/build/outputs/bundle/release/*"
-          tags: false
+          tags: true
           draft: false
 
       # Upload Artifact Build
