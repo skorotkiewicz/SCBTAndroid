@@ -11,8 +11,6 @@ on:
   # Triggers the workflow on push or pull request events but only for default and protected branches
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -67,7 +65,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "${{ env.main_project_module }}/build/outputs/apk/debug/*"
-          tags: true
+          tags: false
           draft: false
 
       - name: Upload APK Release
@@ -76,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "${{ env.main_project_module }}/build/outputs/apk/release/*"
-          tags: true
+          tags: false
           draft: false
 
       - name: Upload AAB (App Bundle)
@@ -85,7 +83,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: "${{ env.main_project_module }}/build/outputs/bundle/release/*"
-          tags: true
+          tags: false
           draft: false
 
       # Upload Artifact Build
